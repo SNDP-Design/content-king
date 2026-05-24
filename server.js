@@ -6,6 +6,10 @@ import { fileURLToPath } from "node:url";
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const publicDir = join(__dirname, "public");
 const port = Number(process.env.PORT || 4173);
+// Hosting platforms (like Render) set PORT and expect the app to listen on 0.0.0.0.
+// Locally, we default to 127.0.0.1 for safety.
+const isHosted = Boolean(process.env.PORT) && process.env.PORT !== "";
+const host = process.env.HOST || (isHosted ? "0.0.0.0" : "127.0.0.1");
 
 const modelFallbackChain = (
   process.env.GEMINI_MODEL_CHAIN ||
@@ -303,6 +307,6 @@ const server = createServer(async (req, res) => {
   }
 });
 
-server.listen(port, "127.0.0.1", () => {
-  console.log(`Content King is running at http://localhost:${port}`);
+server.listen(port, host, () => {
+  console.log(`Content King is listening on http://${host}:${port}`);
 });

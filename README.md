@@ -10,6 +10,38 @@ npm start
 
 Open [http://localhost:4173](http://localhost:4173).
 
+## Deploy (Render)
+
+Render provides a `PORT` automatically. This app will also bind to `0.0.0.0` when running on Render so Render can detect the open port.
+
+## Deploy (No credit card)
+
+If you want a deployment path that can work without a credit card, mirror the approach used in `XGrowth`:
+
+1. Host the UI on GitHub Pages (static files).
+2. Host the API on Cloudflare Workers (keeps your Gemini key secret).
+
+### 1) Publish the UI with GitHub Pages
+
+This repo already includes a ready-to-publish static site in `docs/`.
+
+In GitHub:
+1. Open the repo → Settings → Pages
+2. Source: Deploy from a branch
+3. Branch: `main`
+4. Folder: `/docs`
+5. Save, then wait for GitHub to give you the live link.
+
+### 2) Deploy the API with Cloudflare Workers
+
+The worker lives in `worker/` and exposes:
+- `POST /api/extract`
+- `POST /api/generate`
+
+After you deploy the Worker, copy its URL (it ends with `.workers.dev`) and paste it into:
+
+UI → Advanced settings → API endpoint
+
 ## Gemini setup
 
 Set a Gemini API key before starting the server:

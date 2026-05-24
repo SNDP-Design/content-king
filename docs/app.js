@@ -1,3 +1,4 @@
+// This file mirrors public/app.js so GitHub Pages can publish /docs.
 const platforms = {
   linkedin: { limit: 3000 },
   x: { limit: 280 },
@@ -300,3 +301,4 @@ setMode("url");
 renderEmpty();
 renderHistory();
 wireApiBase();
+
