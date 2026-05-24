@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Content King generates platform-native LinkedIn, X, Instagram, and Reddit posts from startup articles, URLs, and founder notes."
+    />
+    <title>Content King</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace" aria-labelledby="app-title">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">AI content studio for founders</p>
+            <h1 id="app-title">Content King</h1>
+          </div>
+          <div class="status-pill" id="apiStatus">Gemini ready</div>
+        </header>
+
+        <section class="input-panel" aria-label="Content source">
+          <div class="tabs" role="tablist" aria-label="Source type">
+            <button class="tab active" type="button" data-source-mode="url">URL</button>
+            <button class="tab" type="button" data-source-mode="notes">Notes</button>
+          </div>
+
+          <div class="source-grid">
+            <label class="field url-field" for="sourceUrl">
+              <span>Article, blog, or press URL</span>
+              <div class="url-row">
+                <input id="sourceUrl" type="url" placeholder="https://yourstartup.com/blog/launch" autocomplete="url" />
+                <button id="extractBtn" class="secondary-btn" type="button">Fetch</button>
+              </div>
+            </label>
+
+            <label class="field notes-field" for="sourceNotes">
+              <span>Rough notes or pasted article text</span>
+              <textarea
+                id="sourceNotes"
+                placeholder="Paste launch notes, announcement copy, article excerpts, customer insight, or the founder take..."
+              ></textarea>
+            </label>
+          </div>
+
+          <div class="campaign-grid">
+            <label class="field" for="company">
+              <span>Company</span>
+              <input id="company" type="text" placeholder="Content King" />
+            </label>
+            <label class="field" for="audience">
+              <span>Audience</span>
+              <input id="audience" type="text" placeholder="startup founders, operators, early users" />
+            </label>
+            <label class="field" for="goal">
+              <span>Goal</span>
+              <select id="goal">
+                <option>Build awareness</option>
+                <option>Drive signups</option>
+                <option>Announce launch</option>
+                <option>Start a discussion</option>
+                <option>Recruit beta users</option>
+              </select>
+            </label>
+            <label class="field" for="tone">
+              <span>Tone</span>
+              <select id="tone">
+                <option>Founder-led and credible</option>
+                <option>Bold and contrarian</option>
+                <option>Warm and community-first</option>
+                <option>Investor-update crisp</option>
+                <option>Playful but sharp</option>
+              </select>
+            </label>
+            <label class="field wide" for="cta">
+              <span>Call to action</span>
+              <input id="cta" type="text" placeholder="Ask for feedback, signups, opinions, or founder stories" />
+            </label>
+          </div>
+
+          <details class="api-key">
+            <summary>Use a browser-provided Gemini key</summary>
+            <label class="field" for="apiKey">
+              <span>Gemini API key</span>
+              <input id="apiKey" type="password" placeholder="Optional. Prefer GEMINI_API_KEY on the server." />
+            </label>
+          </details>
+
+          <div class="action-row">
+            <button id="generateBtn" class="primary-btn" type="button">Generate all posts</button>
+            <button id="clearBtn" class="ghost-btn" type="button">Clear</button>
+          </div>
+        </section>
+
+        <section class="output-head">
+          <div>
+            <p class="eyebrow">Platform-native drafts</p>
+            <h2>Four channels, one founder story</h2>
+          </div>
+          <button id="exportBtn" class="secondary-btn" type="button" disabled>Export JSON</button>
+        </section>
+
+        <section id="alert" class="alert" hidden></section>
+        <section id="results" class="results" aria-live="polite"></section>
+      </section>
+
+      <aside class="history-panel" aria-labelledby="history-title">
+        <div class="history-header">
+          <h2 id="history-title">History</h2>
+          <button id="clearHistoryBtn" class="icon-btn" type="button" title="Clear history" aria-label="Clear history">×</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </aside>
+    </main>
+
+    <template id="postCardTemplate">
+      <article class="post-card">
+        <header>
+          <div>
+            <p class="platform"></p>
+            <h3></h3>
+          </div>
+          <button class="copy-btn" type="button">Copy</button>
+        </header>
+        <textarea class="post-text"></textarea>
+        <footer>
+          <span class="char-count"></span>
+          <span class="limit-note"></span>
+        </footer>
+        <ul class="tips"></ul>
+      </article>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
