@@ -125,6 +125,7 @@ function renderResults(result) {
     const limitNote = node.querySelector(".limit-note");
     const tips = node.querySelector(".tips");
 
+    card.classList.add(key);
     node.querySelector(".platform").textContent = item.platform || key;
     node.querySelector("h3").textContent = item.title || "Draft";
     textarea.value = item.post || "";

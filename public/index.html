@@ -8,23 +8,42 @@
       content="Content King generates platform-native LinkedIn, X, Instagram, and Reddit posts from startup articles, URLs, and founder notes."
     />
     <title>Content King</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
+    <div class="page-glow" aria-hidden="true"></div>
     <main class="shell">
       <section class="workspace" aria-labelledby="app-title">
         <header class="topbar">
-          <div>
-            <p class="eyebrow">AI content studio for founders</p>
-            <h1 id="app-title">Content King</h1>
+          <div class="brand-lockup">
+            <div class="brand-mark" aria-hidden="true">CK</div>
+            <div>
+              <p class="eyebrow">AI content studio for founders</p>
+              <h1 id="app-title">Content King</h1>
+            </div>
           </div>
-          <div class="status-pill" id="apiStatus">Gemini ready</div>
+          <div class="top-actions">
+            <div class="status-pill" id="apiStatus">Gemini ready</div>
+            <button id="exportBtn" class="secondary-btn" type="button" disabled>Export</button>
+          </div>
         </header>
 
         <section class="input-panel" aria-label="Content source">
-          <div class="tabs" role="tablist" aria-label="Source type">
-            <button class="tab active" type="button" data-source-mode="url">URL</button>
-            <button class="tab" type="button" data-source-mode="notes">Notes</button>
+          <div class="studio-head">
+            <div>
+              <p class="eyebrow">Source</p>
+              <h2>Turn one raw idea into four native posts.</h2>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Source type">
+              <button class="tab active" type="button" data-source-mode="url">URL</button>
+              <button class="tab" type="button" data-source-mode="notes">Notes</button>
+            </div>
           </div>
 
           <div class="source-grid">
@@ -103,7 +122,6 @@
             <p class="eyebrow">Platform-native drafts</p>
             <h2>Four channels, one founder story</h2>
           </div>
-          <button id="exportBtn" class="secondary-btn" type="button" disabled>Export JSON</button>
         </section>
 
         <section id="alert" class="alert" hidden></section>
