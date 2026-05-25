@@ -37,8 +37,10 @@ const elements = {
   template: $("#postCardTemplate")
 };
 
+const defaultApiBase = location.hostname.endsWith("github.io") ? "https://content-king-api.xgrowth.workers.dev" : "";
+
 const apiConfig = {
-  base: localStorage.getItem("contentKingApiBase") || ""
+  base: localStorage.getItem("contentKingApiBase") || defaultApiBase
 };
 
 function apiUrl(path) {
